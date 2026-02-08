@@ -15,6 +15,20 @@ const themeData = {
             summary: "Distribuciones discretas y continuas, funciones de densidad.",
             date: "Feb 2026",
             pdf: "pdfs/variables_aleatorias.pdf"
+        },
+        {
+            id: 2,
+            title: "Variables Aleatorias",
+            summary: "Distribuciones discretas y continuas, funciones de densidad.",
+            date: "Feb 2026",
+            pdf: "pdfs/variables_aleatorias.pdf"
+        },
+        {
+            id: 4,
+            title: "Teoría Bayesiana",
+            summary: "NOtas sobre el estudio de Bayes",
+            date: "Feb 2026",
+            pdf: "pdfs/notas-0004.pdf"
         }
     ]
 };
