@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo | Probabilidad</title>
+    <link rel="icon" type="image/svg+xml" href="../../../assets/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/styles.css">
+    
+    <style>
+        /* Hamburger & Nav Styles Local Override/Addition */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-brand {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 1001;
+        }
+        
+        .nav-logo {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: #000000; /* Force black color */
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .mobile-menu a {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu.active a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active a:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-menu.active a:nth-child(3) { transition-delay: 0.3s; }
+        
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1.5rem 1.5rem;
+            }
+            .nav-brand {
+                font-size: 0.65rem;
+            }
+            .nav-logo {
+                width: 20px;
+                height: 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .container {
+                padding: 7rem 1.5rem 3rem;
+            }
+            h1 {
+                font-size: 2.5rem !important;
+                margin-bottom: 2rem !important;
+            }
+        }
+    </style>
+</head>
+<body style="background: #fff;">
+    <nav class="nav" id="navbar">
+        <div class="nav-brand">
+            <img src="../../../assets/logo.svg" alt="Logo" class="nav-logo">
+            <span>M.H.A.</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../../../index.html">Inicio</a></li>
+            <li><a href="../../../notas.html">Temas</a></li>
+            <li><a href="../../acerca.html">Acerca</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../../../index.html">Inicio</a>
+        <a href="../../../notas.html">Temas</a>
+        <a href="../../acerca.html">Acerca</a>
+    </div>
+
+    <div class="container fade-in-up" style="padding-top: 8rem; padding-bottom: 4rem;">
+        <header style="margin-bottom: 4rem;">
+            <h1 class="serif" style="font-size: clamp(2.5rem, 8vw, 4rem); font-style: italic; margin-bottom: 1rem;">Probabilidad</h1>
+            <p id="theme-desc" style="color: #666; font-size: 1.1rem;"></p>
+        </header>
+
+        <section class="archive-list" id="notes-grid">
+            <!-- Archive items will be injected here -->
+        </section>
+    </div>
+
+    <script type="module">
+        import themeData from './data.js';
+        import { initSmartNavbar, initHamburgerMenu } from '../../../js/ui.js';
+
+        const themeDesc = document.getElementById('theme-desc');
+        const notesGrid = document.getElementById('notes-grid');
+
+        // Initialize UI
+        themeDesc.textContent = themeData.description;
+
+        initSmartNavbar();
+        initHamburgerMenu();
+
+        themeData.notes.forEach((note, index) => {
+            // Create anchor element for download
+            const item = document.createElement('a');
+            item.href = note.pdf;
+            item.target = '_blank'; // Open in new tab
+            item.className = 'archive-item fade-in-up';
+            item.style.animationDelay = `${index * 0.1}s`;
+            item.style.textDecoration = 'none'; // Remove default underline
+            item.style.color = 'inherit'; // Fix blue link color
+            item.style.display = 'grid'; // Maintain grid layout
+            
+            const num = (index + 1).toString().padStart(4, '0');
+            
+            item.innerHTML = `
+                <span class="archive-number">${num}</span>
+                <span class="archive-title">${note.title}</span>
+                <span class="archive-date">${note.date}</span>
+            `;
+            
+            notesGrid.appendChild(item);
+        });
+    </script>
+</body>
+</html>
